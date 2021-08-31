@@ -9,7 +9,7 @@ Currently the model architectures are mocked up, and I attempted to reproduce ta
 ### Original Paper
 
 | Model            | METEOR | Avg.Num | Avg.R |
-|------------------|--------|---------|-------|
+| ---------------- | ------ | ------- | ----- |
 | CGO (k=1)        | 24.4   | 1.62    | 0.50  |
 | CGO (k=3)        | 24.4   | 2.43    | 0.67  |
 | CGO (k=5)        | 24.2   | 2.77    | 0.73  |
@@ -21,7 +21,7 @@ Currently the model architectures are mocked up, and I attempted to reproduce ta
 ### This Implementation
 
 | Model            | METEOR | Avg.Num | Avg.R |
-|------------------|--------|---------|-------|
+| ---------------- | ------ | ------- | ----- |
 | CGO (k=1)        | 18.7   | 1.28    | 0.41  |
 | CGO (k=3)        | 18.3   | 2.04    | 0.66  |
 | CGO (k=5)        | 17.7   | 2.35    | 0.76  |
@@ -78,4 +78,13 @@ pip install -e nlg-eval
 nlg-eval --set-up
 ``` 
 
-Then, run `python eval_cgo_table1.py` to reproduce table 1. Results will be saved to `results/table_1.json`
+Then, run `python eval_cgo_table1.py` to reproduce table 1. Results will be saved to `results/table_1.json`.
+
+Models for the current results:
+
+[classifier](https://drive.google.com/file/d/12rHjAKwOBygR4GeCIdO_XTwGo_JIs7TW/view?usp=sharing), [classifier parameters](https://drive.google.com/file/d/1QNjOQy7hZY6c1sFVVEHkQHpzgGrrxsVO/view?usp=sharing)
+
+[lstm-left](https://drive.google.com/file/d/1xxIBT4Xv0lgp3UqO0TZhFMAXJ2tcF0Wt/view?usp=sharing), [lstm-left parameters](https://drive.google.com/file/d/1a8rcUIpWNroDYwjMb5yIKkvt68RDYEcy/view?usp=sharing)
+
+[lstm-right](https://drive.google.com/file/d/1wvwV_DvT5_fYRwqZziiEtfw4_FvCFhzN/view?usp=sharing), [lstm-right parameters](https://drive.google.com/file/d/1eG2Van3fwxxRJ88m7veEti5vOHZRQ2lj/view?usp=sharing)
+
