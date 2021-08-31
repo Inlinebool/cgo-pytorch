@@ -116,7 +116,8 @@ class LanguageModel(torch.nn.Module):
             att_dim,
             do_weight_norm=True,
         )
-        self.relu = nn.ReLU()
+        # self.relu = nn.ReLU()
+        self.tanh = nn.Tanh()
         self.dropout = nn.Dropout(dropout)
         self.fc_att_out = FullyConnectedLayer(att_dim,
                                               1,
@@ -142,7 +143,8 @@ class LanguageModel(torch.nn.Module):
 
         att_h = self.fc_att_hidden(att_h1).unsqueeze(1)
         att_v = self.fc_att_image(image_features)
-        att_in = self.dropout(self.relu(att_h + att_v))
+        # att_in = self.dropout(self.relu(att_h + att_v))
+        att_in = self.dropout(self.tanh(att_h + att_v))
         alphas = self.fc_att_out(att_in)
         reduced_features = torch.sum(alphas * image_features, dim=1)
 

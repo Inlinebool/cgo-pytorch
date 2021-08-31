@@ -63,9 +63,9 @@ def prepare_input_classifier():
             label_detection[image][category_indices[label]] = 1
             category_count_detection[categories[category_indices[label]]] += 1
 
-    label_detection = {'train': [], 'val': [], 'test': []}
+    label_detection_splited = {'train': [], 'val': [], 'test': []}
 
-    label_caption = {'train': [], 'val': [], 'test': []}
+    label_caption_splited = {'train': [], 'val': [], 'test': []}
 
     filemap = {}
 
@@ -96,7 +96,7 @@ def prepare_input_classifier():
                         label[categories.index(word)] = 1
                         category_count_caption[word] += 1
 
-            label_caption[split].append({
+            label_caption_splited[split].append({
                 'image_id': image_id,
                 'label': label,
             })
@@ -105,7 +105,7 @@ def prepare_input_classifier():
                 'file_name': item['filename']
             }
             if image_id in label_detection:
-                label_detection[split].append({
+                label_detection_splited[split].append({
                     'image_id':
                     image_id,
                     'label':
@@ -115,8 +115,17 @@ def prepare_input_classifier():
                 logger.warning(
                     "Not found in coco detection! id: {0}".format(image_id))
 
+    logger.info('detection labels:')
+    logger.info('train: {0}'.format(len(label_detection_splited['train'])))
+    logger.info('val: {0}'.format(len(label_detection_splited['val'])))
+    logger.info('test: {0}'.format(len(label_detection_splited['test'])))
+    logger.info('caption labels:')
+    logger.info('train: {0}'.format(len(label_caption_splited['train'])))
+    logger.info('val: {0}'.format(len(label_caption_splited['val'])))
+    logger.info('test: {0}'.format(len(label_caption_splited['test'])))
+
     with open(os.path.join(classifier_dir, 'label_caption.json'), 'w') as fp:
-        json.dump(label_caption, fp)
+        json.dump(label_caption_splited, fp)
 
     with open(os.path.join(classifier_dir, 'label_detection.json'), 'w') as fp:
         json.dump(label_detection, fp)
