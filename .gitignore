@@ -1,2 +1,4 @@
 data
 train.sh
+models
+__pycache__

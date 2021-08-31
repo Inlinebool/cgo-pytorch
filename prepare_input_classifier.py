@@ -128,7 +128,7 @@ def prepare_input_classifier():
         json.dump(label_caption_splited, fp)
 
     with open(os.path.join(classifier_dir, 'label_detection.json'), 'w') as fp:
-        json.dump(label_detection, fp)
+        json.dump(label_detection_splited, fp)
 
     with open(os.path.join(classifier_dir, 'category_count_detection.json'),
               'w') as fp:
