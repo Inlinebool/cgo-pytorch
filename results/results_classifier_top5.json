@@ -1,0 +1,722 @@
+{
+    "person": {
+        "true_pos": 2583,
+        "false_pos": 1221,
+        "true_neg": 1104,
+        "false_neg": 44,
+        "recall": 0.9832508564902931,
+        "precision": 0.6790220820189274,
+        "f1": 0.8032965324210853
+    },
+    "bicycle": {
+        "true_pos": 72,
+        "false_pos": 161,
+        "true_neg": 4665,
+        "false_neg": 54,
+        "recall": 0.5714285714285714,
+        "precision": 0.3090128755364807,
+        "f1": 0.4011142061281337
+    },
+    "car": {
+        "true_pos": 467,
+        "false_pos": 671,
+        "true_neg": 3759,
+        "false_neg": 55,
+        "recall": 0.8946360153256705,
+        "precision": 0.4103690685413005,
+        "f1": 0.5626506024096386
+    },
+    "motorcycle": {
+        "true_pos": 125,
+        "false_pos": 68,
+        "true_neg": 4736,
+        "false_neg": 23,
+        "recall": 0.8445945945945946,
+        "precision": 0.6476683937823834,
+        "f1": 0.7331378299120235
+    },
+    "airplane": {
+        "true_pos": 103,
+        "false_pos": 15,
+        "true_neg": 4824,
+        "false_neg": 10,
+        "recall": 0.911504424778761,
+        "precision": 0.8728813559322034,
+        "f1": 0.8917748917748918
+    },
+    "bus": {
+        "true_pos": 125,
+        "false_pos": 119,
+        "true_neg": 4685,
+        "false_neg": 23,
+        "recall": 0.8445945945945946,
+        "precision": 0.5122950819672131,
+        "f1": 0.6377551020408163
+    },
+    "train": {
+        "true_pos": 134,
+        "false_pos": 11,
+        "true_neg": 4795,
+        "false_neg": 12,
+        "recall": 0.9178082191780822,
+        "precision": 0.9241379310344827,
+        "f1": 0.9209621993127147
+    },
+    "truck": {
+        "true_pos": 223,
+        "false_pos": 536,
+        "true_neg": 4143,
+        "false_neg": 50,
+        "recall": 0.8168498168498168,
+        "precision": 0.2938076416337286,
+        "f1": 0.4321705426356589
+    },
+    "boat": {
+        "true_pos": 113,
+        "false_pos": 281,
+        "true_neg": 4532,
+        "false_neg": 26,
+        "recall": 0.8129496402877698,
+        "precision": 0.2868020304568528,
+        "f1": 0.42401500938086306
+    },
+    "traffic light": {
+        "true_pos": 164,
+        "false_pos": 343,
+        "true_neg": 4417,
+        "false_neg": 28,
+        "recall": 0.8541666666666666,
+        "precision": 0.3234714003944773,
+        "f1": 0.46924177396280403
+    },
+    "fire hydrant": {
+        "true_pos": 54,
+        "false_pos": 115,
+        "true_neg": 4760,
+        "false_neg": 23,
+        "recall": 0.7012987012987013,
+        "precision": 0.31952662721893493,
+        "f1": 0.43902439024390244
+    },
+    "stop sign": {
+        "true_pos": 55,
+        "false_pos": 97,
+        "true_neg": 4780,
+        "false_neg": 20,
+        "recall": 0.7333333333333333,
+        "precision": 0.3618421052631579,
+        "f1": 0.4845814977973568
+    },
+    "parking meter": {
+        "true_pos": 5,
+        "false_pos": 29,
+        "true_neg": 4886,
+        "false_neg": 32,
+        "recall": 0.13513513513513514,
+        "precision": 0.14705882352941177,
+        "f1": 0.14084507042253522
+    },
+    "bench": {
+        "true_pos": 163,
+        "false_pos": 850,
+        "true_neg": 3870,
+        "false_neg": 69,
+        "recall": 0.7025862068965517,
+        "precision": 0.16090819348469892,
+        "f1": 0.26184738955823295
+    },
+    "bird": {
+        "true_pos": 108,
+        "false_pos": 597,
+        "true_neg": 4224,
+        "false_neg": 23,
+        "recall": 0.8244274809160306,
+        "precision": 0.15319148936170213,
+        "f1": 0.2583732057416268
+    },
+    "cat": {
+        "true_pos": 173,
+        "false_pos": 16,
+        "true_neg": 4744,
+        "false_neg": 19,
+        "recall": 0.9010416666666666,
+        "precision": 0.9153439153439153,
+        "f1": 0.9081364829396326
+    },
+    "dog": {
+        "true_pos": 152,
+        "false_pos": 240,
+        "true_neg": 4529,
+        "false_neg": 31,
+        "recall": 0.8306010928961749,
+        "precision": 0.3877551020408163,
+        "f1": 0.528695652173913
+    },
+    "horse": {
+        "true_pos": 108,
+        "false_pos": 34,
+        "true_neg": 4800,
+        "false_neg": 10,
+        "recall": 0.9152542372881356,
+        "precision": 0.7605633802816901,
+        "f1": 0.8307692307692308
+    },
+    "sheep": {
+        "true_pos": 67,
+        "false_pos": 154,
+        "true_neg": 4725,
+        "false_neg": 6,
+        "recall": 0.9178082191780822,
+        "precision": 0.3031674208144796,
+        "f1": 0.4557823129251701
+    },
+    "cow": {
+        "true_pos": 77,
+        "false_pos": 432,
+        "true_neg": 4436,
+        "false_neg": 7,
+        "recall": 0.9166666666666666,
+        "precision": 0.1512770137524558,
+        "f1": 0.2596964586846543
+    },
+    "elephant": {
+        "true_pos": 91,
+        "false_pos": 3,
+        "true_neg": 4856,
+        "false_neg": 2,
+        "recall": 0.978494623655914,
+        "precision": 0.9680851063829787,
+        "f1": 0.9732620320855615
+    },
+    "bear": {
+        "true_pos": 28,
+        "false_pos": 82,
+        "true_neg": 4841,
+        "false_neg": 1,
+        "recall": 0.9655172413793104,
+        "precision": 0.2545454545454545,
+        "f1": 0.4028776978417266
+    },
+    "zebra": {
+        "true_pos": 75,
+        "false_pos": 85,
+        "true_neg": 4789,
+        "false_neg": 3,
+        "recall": 0.9615384615384616,
+        "precision": 0.46875,
+        "f1": 0.6302521008403361
+    },
+    "giraffe": {
+        "true_pos": 111,
+        "false_pos": 70,
+        "true_neg": 4769,
+        "false_neg": 2,
+        "recall": 0.9823008849557522,
+        "precision": 0.6132596685082873,
+        "f1": 0.7551020408163265
+    },
+    "backpack": {
+        "true_pos": 134,
+        "false_pos": 657,
+        "true_neg": 4083,
+        "false_neg": 78,
+        "recall": 0.6320754716981132,
+        "precision": 0.16940581542351454,
+        "f1": 0.26719840478564305
+    },
+    "umbrella": {
+        "true_pos": 114,
+        "false_pos": 50,
+        "true_neg": 4737,
+        "false_neg": 51,
+        "recall": 0.6909090909090909,
+        "precision": 0.6951219512195121,
+        "f1": 0.6930091185410334
+    },
+    "handbag": {
+        "true_pos": 190,
+        "false_pos": 500,
+        "true_neg": 4164,
+        "false_neg": 98,
+        "recall": 0.6597222222222222,
+        "precision": 0.2753623188405797,
+        "f1": 0.3885480572597137
+    },
+    "tie": {
+        "true_pos": 108,
+        "false_pos": 112,
+        "true_neg": 4679,
+        "false_neg": 53,
+        "recall": 0.6708074534161491,
+        "precision": 0.4909090909090909,
+        "f1": 0.5669291338582677
+    },
+    "suitcase": {
+        "true_pos": 73,
+        "false_pos": 59,
+        "true_neg": 4783,
+        "false_neg": 37,
+        "recall": 0.6636363636363637,
+        "precision": 0.553030303030303,
+        "f1": 0.6033057851239669
+    },
+    "frisbee": {
+        "true_pos": 77,
+        "false_pos": 77,
+        "true_neg": 4790,
+        "false_neg": 8,
+        "recall": 0.9058823529411765,
+        "precision": 0.5,
+        "f1": 0.6443514644351465
+    },
+    "skis": {
+        "true_pos": 114,
+        "false_pos": 54,
+        "true_neg": 4780,
+        "false_neg": 4,
+        "recall": 0.9661016949152542,
+        "precision": 0.6785714285714286,
+        "f1": 0.7972027972027972
+    },
+    "snowboard": {
+        "true_pos": 61,
+        "false_pos": 106,
+        "true_neg": 4781,
+        "false_neg": 4,
+        "recall": 0.9384615384615385,
+        "precision": 0.3652694610778443,
+        "f1": 0.5258620689655172
+    },
+    "sports ball": {
+        "true_pos": 145,
+        "false_pos": 247,
+        "true_neg": 4535,
+        "false_neg": 25,
+        "recall": 0.8529411764705882,
+        "precision": 0.36989795918367346,
+        "f1": 0.5160142348754448
+    },
+    "kite": {
+        "true_pos": 81,
+        "false_pos": 78,
+        "true_neg": 4787,
+        "false_neg": 6,
+        "recall": 0.9310344827586207,
+        "precision": 0.5094339622641509,
+        "f1": 0.6585365853658537
+    },
+    "baseball bat": {
+        "true_pos": 93,
+        "false_pos": 63,
+        "true_neg": 4791,
+        "false_neg": 5,
+        "recall": 0.9489795918367347,
+        "precision": 0.5961538461538461,
+        "f1": 0.7322834645669292
+    },
+    "baseball glove": {
+        "true_pos": 102,
+        "false_pos": 68,
+        "true_neg": 4774,
+        "false_neg": 8,
+        "recall": 0.9272727272727272,
+        "precision": 0.6,
+        "f1": 0.7285714285714285
+    },
+    "skateboard": {
+        "true_pos": 141,
+        "false_pos": 16,
+        "true_neg": 4793,
+        "false_neg": 2,
+        "recall": 0.986013986013986,
+        "precision": 0.8980891719745223,
+        "f1": 0.94
+    },
+    "surfboard": {
+        "true_pos": 137,
+        "false_pos": 79,
+        "true_neg": 4717,
+        "false_neg": 19,
+        "recall": 0.8782051282051282,
+        "precision": 0.6342592592592593,
+        "f1": 0.7365591397849462
+    },
+    "tennis racket": {
+        "true_pos": 120,
+        "false_pos": 18,
+        "true_neg": 4807,
+        "false_neg": 7,
+        "recall": 0.9448818897637795,
+        "precision": 0.8695652173913043,
+        "f1": 0.9056603773584906
+    },
+    "bottle": {
+        "true_pos": 214,
+        "false_pos": 356,
+        "true_neg": 4227,
+        "false_neg": 155,
+        "recall": 0.5799457994579946,
+        "precision": 0.37543859649122807,
+        "f1": 0.45580404685835996
+    },
+    "wine glass": {
+        "true_pos": 26,
+        "false_pos": 16,
+        "true_neg": 4808,
+        "false_neg": 102,
+        "recall": 0.203125,
+        "precision": 0.6190476190476191,
+        "f1": 0.3058823529411765
+    },
+    "cup": {
+        "true_pos": 271,
+        "false_pos": 463,
+        "true_neg": 4107,
+        "false_neg": 111,
+        "recall": 0.7094240837696335,
+        "precision": 0.3692098092643052,
+        "f1": 0.48566308243727596
+    },
+    "fork": {
+        "true_pos": 81,
+        "false_pos": 144,
+        "true_neg": 4665,
+        "false_neg": 62,
+        "recall": 0.5664335664335665,
+        "precision": 0.36,
+        "f1": 0.44021739130434784
+    },
+    "knife": {
+        "true_pos": 61,
+        "false_pos": 146,
+        "true_neg": 4624,
+        "false_neg": 121,
+        "recall": 0.33516483516483514,
+        "precision": 0.2946859903381642,
+        "f1": 0.31362467866323906
+    },
+    "spoon": {
+        "true_pos": 35,
+        "false_pos": 62,
+        "true_neg": 4729,
+        "false_neg": 126,
+        "recall": 0.21739130434782608,
+        "precision": 0.36082474226804123,
+        "f1": 0.2713178294573643
+    },
+    "bowl": {
+        "true_pos": 196,
+        "false_pos": 319,
+        "true_neg": 4347,
+        "false_neg": 90,
+        "recall": 0.6853146853146853,
+        "precision": 0.38058252427184464,
+        "f1": 0.4893882646691635
+    },
+    "banana": {
+        "true_pos": 55,
+        "false_pos": 47,
+        "true_neg": 4825,
+        "false_neg": 25,
+        "recall": 0.6875,
+        "precision": 0.5392156862745098,
+        "f1": 0.6043956043956044
+    },
+    "apple": {
+        "true_pos": 31,
+        "false_pos": 53,
+        "true_neg": 4830,
+        "false_neg": 38,
+        "recall": 0.4492753623188406,
+        "precision": 0.36904761904761907,
+        "f1": 0.40522875816993464
+    },
+    "sandwich": {
+        "true_pos": 47,
+        "false_pos": 86,
+        "true_neg": 4760,
+        "false_neg": 59,
+        "recall": 0.44339622641509435,
+        "precision": 0.3533834586466165,
+        "f1": 0.39330543933054396
+    },
+    "orange": {
+        "true_pos": 42,
+        "false_pos": 51,
+        "true_neg": 4827,
+        "false_neg": 32,
+        "recall": 0.5675675675675675,
+        "precision": 0.45161290322580644,
+        "f1": 0.5029940119760479
+    },
+    "broccoli": {
+        "true_pos": 68,
+        "false_pos": 23,
+        "true_neg": 4854,
+        "false_neg": 7,
+        "recall": 0.9066666666666666,
+        "precision": 0.7472527472527473,
+        "f1": 0.8192771084337349
+    },
+    "carrot": {
+        "true_pos": 39,
+        "false_pos": 52,
+        "true_neg": 4825,
+        "false_neg": 36,
+        "recall": 0.52,
+        "precision": 0.42857142857142855,
+        "f1": 0.46987951807228917
+    },
+    "hot dog": {
+        "true_pos": 23,
+        "false_pos": 51,
+        "true_neg": 4850,
+        "false_neg": 28,
+        "recall": 0.45098039215686275,
+        "precision": 0.3108108108108108,
+        "f1": 0.368
+    },
+    "pizza": {
+        "true_pos": 111,
+        "false_pos": 6,
+        "true_neg": 4815,
+        "false_neg": 20,
+        "recall": 0.8473282442748091,
+        "precision": 0.9487179487179487,
+        "f1": 0.8951612903225806
+    },
+    "donut": {
+        "true_pos": 52,
+        "false_pos": 30,
+        "true_neg": 4845,
+        "false_neg": 25,
+        "recall": 0.6753246753246753,
+        "precision": 0.6341463414634146,
+        "f1": 0.6540880503144654
+    },
+    "cake": {
+        "true_pos": 89,
+        "false_pos": 67,
+        "true_neg": 4757,
+        "false_neg": 39,
+        "recall": 0.6953125,
+        "precision": 0.5705128205128205,
+        "f1": 0.6267605633802817
+    },
+    "chair": {
+        "true_pos": 423,
+        "false_pos": 590,
+        "true_neg": 3817,
+        "false_neg": 122,
+        "recall": 0.7761467889908257,
+        "precision": 0.4175715695952616,
+        "f1": 0.5430038510911425
+    },
+    "couch": {
+        "true_pos": 142,
+        "false_pos": 233,
+        "true_neg": 4544,
+        "false_neg": 33,
+        "recall": 0.8114285714285714,
+        "precision": 0.37866666666666665,
+        "f1": 0.5163636363636364
+    },
+    "potted plant": {
+        "true_pos": 65,
+        "false_pos": 128,
+        "true_neg": 4657,
+        "false_neg": 102,
+        "recall": 0.38922155688622756,
+        "precision": 0.33678756476683935,
+        "f1": 0.3611111111111111
+    },
+    "bed": {
+        "true_pos": 117,
+        "false_pos": 135,
+        "true_neg": 4669,
+        "false_neg": 31,
+        "recall": 0.7905405405405406,
+        "precision": 0.4642857142857143,
+        "f1": 0.585
+    },
+    "dining table": {
+        "true_pos": 426,
+        "false_pos": 472,
+        "true_neg": 3963,
+        "false_neg": 91,
+        "recall": 0.8239845261121856,
+        "precision": 0.47438752783964366,
+        "f1": 0.6021201413427562
+    },
+    "toilet": {
+        "true_pos": 154,
+        "false_pos": 33,
+        "true_neg": 4760,
+        "false_neg": 5,
+        "recall": 0.9685534591194969,
+        "precision": 0.8235294117647058,
+        "f1": 0.8901734104046243
+    },
+    "tv": {
+        "true_pos": 131,
+        "false_pos": 114,
+        "true_neg": 4671,
+        "false_neg": 36,
+        "recall": 0.7844311377245509,
+        "precision": 0.5346938775510204,
+        "f1": 0.6359223300970874
+    },
+    "laptop": {
+        "true_pos": 111,
+        "false_pos": 70,
+        "true_neg": 4732,
+        "false_neg": 39,
+        "recall": 0.74,
+        "precision": 0.6132596685082873,
+        "f1": 0.6706948640483383
+    },
+    "mouse": {
+        "true_pos": 63,
+        "false_pos": 37,
+        "true_neg": 4833,
+        "false_neg": 19,
+        "recall": 0.7682926829268293,
+        "precision": 0.63,
+        "f1": 0.6923076923076923
+    },
+    "remote": {
+        "true_pos": 75,
+        "false_pos": 85,
+        "true_neg": 4742,
+        "false_neg": 50,
+        "recall": 0.6,
+        "precision": 0.46875,
+        "f1": 0.5263157894736842
+    },
+    "keyboard": {
+        "true_pos": 71,
+        "false_pos": 36,
+        "true_neg": 4831,
+        "false_neg": 14,
+        "recall": 0.8352941176470589,
+        "precision": 0.6635514018691588,
+        "f1": 0.7395833333333334
+    },
+    "cell phone": {
+        "true_pos": 90,
+        "false_pos": 214,
+        "true_neg": 4539,
+        "false_neg": 109,
+        "recall": 0.45226130653266333,
+        "precision": 0.29605263157894735,
+        "f1": 0.35785288270377735
+    },
+    "microwave": {
+        "true_pos": 27,
+        "false_pos": 34,
+        "true_neg": 4864,
+        "false_neg": 27,
+        "recall": 0.5,
+        "precision": 0.4426229508196721,
+        "f1": 0.46956521739130436
+    },
+    "oven": {
+        "true_pos": 87,
+        "false_pos": 66,
+        "true_neg": 4778,
+        "false_neg": 21,
+        "recall": 0.8055555555555556,
+        "precision": 0.5686274509803921,
+        "f1": 0.6666666666666666
+    },
+    "toaster": {
+        "true_pos": 0,
+        "false_pos": 0,
+        "true_neg": 4941,
+        "false_neg": 11,
+        "recall": 0.0,
+        "precision": 0,
+        "f1": 0.0
+    },
+    "sink": {
+        "true_pos": 179,
+        "false_pos": 124,
+        "true_neg": 4623,
+        "false_neg": 26,
+        "recall": 0.8731707317073171,
+        "precision": 0.5907590759075908,
+        "f1": 0.7047244094488189
+    },
+    "refrigerator": {
+        "true_pos": 60,
+        "false_pos": 46,
+        "true_neg": 4812,
+        "false_neg": 34,
+        "recall": 0.6382978723404256,
+        "precision": 0.5660377358490566,
+        "f1": 0.6
+    },
+    "book": {
+        "true_pos": 125,
+        "false_pos": 470,
+        "true_neg": 4235,
+        "false_neg": 122,
+        "recall": 0.5060728744939271,
+        "precision": 0.21008403361344538,
+        "f1": 0.29691211401425177
+    },
+    "clock": {
+        "true_pos": 143,
+        "false_pos": 39,
+        "true_neg": 4700,
+        "false_neg": 70,
+        "recall": 0.6713615023474179,
+        "precision": 0.7857142857142857,
+        "f1": 0.7240506329113924
+    },
+    "vase": {
+        "true_pos": 79,
+        "false_pos": 57,
+        "true_neg": 4775,
+        "false_neg": 41,
+        "recall": 0.6583333333333333,
+        "precision": 0.5808823529411765,
+        "f1": 0.6171875
+    },
+    "scissors": {
+        "true_pos": 8,
+        "false_pos": 17,
+        "true_neg": 4892,
+        "false_neg": 35,
+        "recall": 0.18604651162790697,
+        "precision": 0.32,
+        "f1": 0.23529411764705882
+    },
+    "teddy bear": {
+        "true_pos": 71,
+        "false_pos": 57,
+        "true_neg": 4806,
+        "false_neg": 18,
+        "recall": 0.797752808988764,
+        "precision": 0.5546875,
+        "f1": 0.6543778801843319
+    },
+    "hair drier": {
+        "true_pos": 0,
+        "false_pos": 0,
+        "true_neg": 4943,
+        "false_neg": 9,
+        "recall": 0.0,
+        "precision": 0,
+        "f1": 0.0
+    },
+    "toothbrush": {
+        "true_pos": 29,
+        "false_pos": 134,
+        "true_neg": 4775,
+        "false_neg": 14,
+        "recall": 0.6744186046511628,
+        "precision": 0.17791411042944785,
+        "f1": 0.2815533980582524
+    }
+}

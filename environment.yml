@@ -1,0 +1,15 @@
+name: cgo
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - cudatoolkit=11.1
+  - pytorch
+  - torchvision
+  - torchaudio
+  - yapf
+  - tqdm
+  - h5py
+  - loguru
