@@ -98,12 +98,12 @@ if __name__ == "__main__":
 
     model = ObjectClassifier((36, 2048), args.att_dim, args.linear_dims, 80)
 
-    trainer.train(model=model,
-                  train_dataset=train_dataset,
-                  val_dataset=val_dataset,
-                  num_workers=args.num_workers,
-                  params=params,
-                  loss_fn=loss_fn_classifier,
-                  model_save_path=model_path,
-                  save_every=5,
-                  device=device)
+    trainer.train_val_loss(model=model,
+                           train_dataset=train_dataset,
+                           val_dataset=val_dataset,
+                           num_workers=args.num_workers,
+                           params=params,
+                           loss_fn=loss_fn_classifier,
+                           model_save_path=model_path,
+                           save_every=5,
+                           device=device)

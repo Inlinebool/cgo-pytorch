@@ -54,6 +54,8 @@ Next, download the [Karpathy's split](https://cs.stanford.edu/people/karpathy/de
 
 Finally, run 
 
+`python prepare_features.py` to convert the `.tsv` image features to `hdf5` format for quick indexing.
+
 `python prepare_input_classifier.py` to prepare datasets for the classifier, and run
 
 `python prepare_input_lstm.py` to prepare datasets for the LSTMs.

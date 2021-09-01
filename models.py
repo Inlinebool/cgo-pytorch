@@ -100,7 +100,11 @@ class LanguageModel(torch.nn.Module):
                  device,
                  dropout=0.5):
         super().__init__()
-        self.embedding = nn.Embedding(vocal_size, embed_dim, padding_idx=0)
+        self.embedding = nn.Embedding(vocal_size,
+                                      embed_dim,
+                                      padding_idx=0,
+                                      max_norm=1.)
+        self.embedding.weight.data.uniform_(-0.1, 0.1)
 
         self.hidden_dim = hidden_dim
         self.lstm_att = nn.LSTMCell(hidden_dim + feature_dim[1] + embed_dim,
@@ -141,7 +145,7 @@ class LanguageModel(torch.nn.Module):
 
         att_h1, att_c1 = self.lstm_att(att_input, (att_h0, att_c0))
 
-        att_h = self.fc_att_hidden(att_h1).unsqueeze(1)
+        att_h = self.fc_att_hidden(self.dropout(att_h1)).unsqueeze(1)
         att_v = self.fc_att_image(image_features)
         # att_in = self.dropout(self.relu(att_h + att_v))
         att_in = self.dropout(self.tanh(att_h + att_v))

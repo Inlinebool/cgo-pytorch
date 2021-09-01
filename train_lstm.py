@@ -8,7 +8,7 @@ from torch import nn
 from torch.nn.utils.rnn import pack_padded_sequence
 
 import trainer
-from datasets import LSTMDataset
+from datasets import ClassifierDataset, LSTMDataset
 from models import LanguageModel
 
 
@@ -33,6 +33,9 @@ if __name__ == "__main__":
     parser.add_argument('--model_name', type=str, default='')
     parser.add_argument('--data_dir', type=str, default='data')
     parser.add_argument('--lstm_data_dir', type=str, default='lstm')
+    parser.add_argument('--classifier_data_dir',
+                        type=str,
+                        default='classifier')
     parser.add_argument('--feature_filename',
                         type=str,
                         default='image_features.h5')
@@ -43,6 +46,9 @@ if __name__ == "__main__":
     parser.add_argument('--word_map_filename',
                         type=str,
                         default='word_map.json')
+    parser.add_argument('--label_caption_filename',
+                        type=str,
+                        default='label_caption.json')
 
     parser.add_argument('--att_dim', type=int, default=1024)
     parser.add_argument('--embed_dim', type=int, default=1024)
@@ -89,6 +95,9 @@ if __name__ == "__main__":
                               label_filename)
     word_map_path = os.path.join(args.data_dir, args.lstm_data_dir,
                                  args.word_map_filename)
+    cap_detection_label_path = os.path.join(args.data_dir,
+                                            args.classifier_data_dir,
+                                            args.label_caption_filename)
 
     if args.load_param:
         with open(args.load_opt, 'r') as fp:
@@ -111,6 +120,10 @@ if __name__ == "__main__":
     with open(word_map_path, 'r') as fp:
         word_map = json.load(fp)
 
+    reversed_word_map = [(word_map[k], k) for k in word_map]
+    reversed_word_map = sorted(reversed_word_map)
+    reversed_word_map = [x[1] for x in reversed_word_map]
+
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     logger.info("Training {0}...".format(model_name))
@@ -118,16 +131,33 @@ if __name__ == "__main__":
     train_dataset = LSTMDataset(feature_path, label_path, featuremap_path,
                                 'train')
     val_dataset = LSTMDataset(feature_path, label_path, featuremap_path, 'val')
+    val_cap_detection = ClassifierDataset(feature_path,
+                                          cap_detection_label_path,
+                                          featuremap_path, 'val')
 
     model = LanguageModel(len(word_map), args.embed_dim, args.hidden_dim,
                           (36, 2048), args.att_dim, device)
 
-    trainer.train(model=model,
-                  train_dataset=train_dataset,
-                  val_dataset=val_dataset,
-                  num_workers=args.num_workers,
-                  params=params,
-                  loss_fn=loss_fn_lstm,
-                  model_save_path=model_path,
-                  save_every=5,
-                  device=device)
+    if args.direction == 'left':
+        trainer.train_val_loss(model=model,
+                               train_dataset=train_dataset,
+                               val_dataset=val_dataset,
+                               num_workers=args.num_workers,
+                               params=params,
+                               loss_fn=loss_fn_lstm,
+                               model_save_path=model_path,
+                               save_every=5,
+                               device=device)
+    else:
+        trainer.train_val_meteor(model=model,
+                                 train_dataset=train_dataset,
+                                 val_dataset=val_dataset,
+                                 val_cap_dataset=val_cap_detection,
+                                 word_map=word_map,
+                                 reversed_word_map=reversed_word_map,
+                                 num_workers=args.num_workers,
+                                 params=params,
+                                 loss_fn=loss_fn_lstm,
+                                 model_save_path=model_path,
+                                 save_every=5,
+                                 device=device)
