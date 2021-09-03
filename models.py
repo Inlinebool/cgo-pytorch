@@ -96,6 +96,7 @@ class LanguageModel(torch.nn.Module):
                  embed_dim,
                  hidden_dim,
                  feature_dim,
+                 img_embed_dim,
                  att_dim,
                  device,
                  dropout=0.5):
@@ -104,10 +105,13 @@ class LanguageModel(torch.nn.Module):
                                       embed_dim,
                                       padding_idx=0,
                                       max_norm=1.)
-        self.embedding.weight.data.uniform_(-0.1, 0.1)
 
         self.hidden_dim = hidden_dim
-        self.lstm_att = nn.LSTMCell(hidden_dim + feature_dim[1] + embed_dim,
+        self.fc_att_embed = FullyConnectedLayer(feature_dim[1],
+                                                img_embed_dim,
+                                                do_weight_norm=True,
+                                                activation=nn.ReLU())
+        self.lstm_att = nn.LSTMCell(hidden_dim + img_embed_dim + embed_dim,
                                     hidden_dim)
 
         self.fc_att_hidden = FullyConnectedLayer(
@@ -120,15 +124,18 @@ class LanguageModel(torch.nn.Module):
             att_dim,
             do_weight_norm=True,
         )
-        # self.relu = nn.ReLU()
-        self.tanh = nn.Tanh()
+        self.relu = nn.ReLU()
         self.dropout = nn.Dropout(dropout)
+        self.fc_lang_embed = FullyConnectedLayer(feature_dim[1],
+                                                 img_embed_dim,
+                                                 do_weight_norm=True,
+                                                 activation=nn.ReLU())
         self.fc_att_out = FullyConnectedLayer(att_dim,
                                               1,
                                               do_weight_norm=True,
                                               activation=nn.Softmax(dim=1))
 
-        self.lstm_lang = nn.LSTMCell(hidden_dim + feature_dim[1], hidden_dim)
+        self.lstm_lang = nn.LSTMCell(hidden_dim + img_embed_dim, hidden_dim)
         self.fc_pred1 = FullyConnectedLayer(
             hidden_dim,
             vocal_size,
@@ -141,18 +148,20 @@ class LanguageModel(torch.nn.Module):
              lang_c0):
         mean_features = torch.mean(image_features, dim=1)
         input_embed = self.embedding(prev_pred)
-        att_input = torch.cat([lang_h0, mean_features, input_embed], dim=1)
+        mean_features_embed = self.fc_att_embed(mean_features)
+        att_input = torch.cat([lang_h0, mean_features_embed, input_embed],
+                              dim=1)
 
         att_h1, att_c1 = self.lstm_att(att_input, (att_h0, att_c0))
 
         att_h = self.fc_att_hidden(self.dropout(att_h1)).unsqueeze(1)
         att_v = self.fc_att_image(image_features)
-        # att_in = self.dropout(self.relu(att_h + att_v))
-        att_in = self.dropout(self.tanh(att_h + att_v))
+        att_in = self.dropout(self.relu(att_h + att_v))
         alphas = self.fc_att_out(att_in)
         reduced_features = torch.sum(alphas * image_features, dim=1)
+        reduced_features_embed = self.fc_lang_embed(reduced_features)
 
-        lang_input = torch.cat([reduced_features, att_h1], dim=1)
+        lang_input = torch.cat([reduced_features_embed, att_h1], dim=1)
         lang_h1, lang_c1 = self.lstm_lang(lang_input, (lang_h0, lang_c0))
 
         pred = self.fc_pred1(self.dropout(lang_h1))
@@ -252,5 +261,9 @@ class LanguageModel(torch.nn.Module):
             decoded_length += 1
             if ended == beam:
                 break
-        _, final_pred_seq = top_k.get()
-        return [x.item() for x in final_pred_seq]
+        top_results = []
+        for _ in range(beam):
+            score, final_pred_seq = top_k.get()
+            top_results.append(
+                (score.item(), [x.item() for x in final_pred_seq]))
+        return top_results

@@ -139,10 +139,10 @@ def train_val_meteor(model, train_dataset, val_dataset, val_cap_dataset,
                 seq = torch.tensor([word_map['<start>']]).view(1,
                                                                -1).to(device)
                 seq_length = torch.tensor([0]).view(1, -1).to(device)
-                decoded = model.decode((image_features, seq, seq_length),
-                                       word_map['<end>'],
-                                       beam=3)
-                decoded = [reversed_word_map[x] for x in decoded]
+                top_results = model.decode((image_features, seq, seq_length),
+                                           word_map['<end>'],
+                                           beam=1)
+                decoded = [reversed_word_map[x] for x in top_results[0][1]]
                 if decoded[-1] != '<end>':
                     logger.warning('decoded sentence not ending with <end>.')
                     logger.warning('image_id: {0}'.format(image_id))

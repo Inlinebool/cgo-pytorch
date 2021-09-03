@@ -35,7 +35,7 @@ def cgo_decode(image_features: torch.Tensor,
                                        device=lstm_left.device).view(1, -1)
     left_seq = lstm_left.decode(
         (image_features, guiding_left, guiding_left_length), word_map['<end>'],
-        beam)
+        beam)[0][1]
     guiding_right = left_seq[::-1]
     guiding_right[0] = word_map['<start>']
     for token in guiding_obj_tokens:
@@ -47,7 +47,7 @@ def cgo_decode(image_features: torch.Tensor,
                                         device=lstm_right.device).view(1, -1)
     right_seq = lstm_right.decode(
         (image_features, guiding_right, guiding_right_length),
-        word_map['<end>'], beam)
+        word_map['<end>'], beam)[0][1]
 
     full_seq = guiding_right.view(-1).tolist() + right_seq
     return [reversed_word_map[x] for x in full_seq]

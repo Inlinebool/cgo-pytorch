@@ -52,6 +52,7 @@ if __name__ == "__main__":
 
     parser.add_argument('--att_dim', type=int, default=1024)
     parser.add_argument('--embed_dim', type=int, default=1024)
+    parser.add_argument('--img_embed_dim', type=int, default=1024)
     parser.add_argument('--hidden_dim', type=int, default=1024)
 
     parser.add_argument('--batch_size', type=int, default=1024)
@@ -136,7 +137,7 @@ if __name__ == "__main__":
                                           featuremap_path, 'val')
 
     model = LanguageModel(len(word_map), args.embed_dim, args.hidden_dim,
-                          (36, 2048), args.att_dim, device)
+                          (36, 2048), args.img_embed_dim, args.att_dim, device)
 
     if args.direction == 'left':
         trainer.train_val_loss(model=model,

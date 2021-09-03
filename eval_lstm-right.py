@@ -5,12 +5,11 @@ import os
 import torch
 from loguru import logger
 from nlgeval import NLGEval
-from torch import nn
 from torch.utils.data.dataloader import DataLoader
 from tqdm import tqdm
 
 from datasets import ClassifierDataset, LSTMDataset
-from models import LanguageModel, ObjectClassifier
+from models import LanguageModel
 
 
 def cgo_decode(image_features: torch.Tensor,
@@ -97,9 +96,7 @@ if __name__ == "__main__":
         description='Evaluate LSTM-right plain as baseline.')
 
     parser.add_argument('--model_dir', type=str, default='models')
-    parser.add_argument('--classifier', type=str, default='classifier.pkl')
-    parser.add_argument('--lstm_left', type=str, default='lstm-left.pkl')
-    parser.add_argument('--lstm_right', type=str, default='lstm-right.pkl')
+    parser.add_argument('--lstm_right_name', type=str, default='lstm-right')
     parser.add_argument('--data_dir', type=str, default='data')
     parser.add_argument('--result_dir', type=str, default='results')
     parser.add_argument('--lstm_data_dir', type=str, default='lstm')
@@ -127,13 +124,12 @@ if __name__ == "__main__":
     parser.add_argument('--label_caption_filename',
                         type=str,
                         default='label_caption.json')
-    parser.add_argument('--beam', type=int, default=3)
+    parser.add_argument('--beam', type=int, default=1)
 
     args = parser.parse_args()
 
-    classifier_path = os.path.join(args.model_dir, args.classifier)
-    lstm_left_path = os.path.join(args.model_dir, args.lstm_left)
-    lstm_right_path = os.path.join(args.model_dir, args.lstm_right)
+    lstm_right_path = os.path.join(args.model_dir,
+                                   '{0}.pkl'.format(args.lstm_right_name))
     feature_path = os.path.join(args.data_dir, args.feature_filename)
     featuremap_path = os.path.join(args.data_dir, args.featuremap_filename)
     caption_label_path = os.path.join(args.data_dir, args.lstm_data_dir,
@@ -154,7 +150,8 @@ if __name__ == "__main__":
 
     ref_path = os.path.join(args.result_dir, 'ref.json')
     hyp_path = os.path.join(args.result_dir, 'hyp-right.json')
-    table1_path = os.path.join(args.result_dir, 'result_lstm-right.json')
+    table1_path = os.path.join(args.result_dir,
+                               'result_{0}.json'.format(args.lstm_right_name))
 
     with open(word_map_path, 'r') as fp:
         word_map = json.load(fp)
@@ -175,12 +172,8 @@ if __name__ == "__main__":
                                               cap_detection_label_path,
                                               featuremap_path, 'test')
 
-    lstm_left: LanguageModel = torch.load(lstm_left_path)
     lstm_right: LanguageModel = torch.load(lstm_right_path)
-    classifier: ObjectClassifier = torch.load(classifier_path)
-    lstm_left.eval()
     lstm_right.eval()
-    classifier.eval()
 
     loader_caption = DataLoader(dataset_caption, shuffle=False)
     loader_detection = DataLoader(dataset_detection, shuffle=False)
@@ -225,15 +218,19 @@ if __name__ == "__main__":
                 seq_length = torch.tensor([0]).view(1, -1).to(device)
                 decoded = lstm_right.decode((image_features, seq, seq_length),
                                             word_map['<end>'],
-                                            beam=3)
-                decoded = [reverse_word_map[x] for x in decoded]
-                if decoded[-1] != '<end>':
+                                            beam=args.beam)
+                decoded_sentences = []
+                for score, seq in decoded:
+                    decoded_sentences.append(
+                        (score, [reverse_word_map[x] for x in seq]))
+                top_sentence = decoded_sentences[0][1]
+                if top_sentence[-1] != '<end>':
                     logger.warning('decoded sentence not ending with <end>.')
                     logger.warning('image_id: {0}'.format(image_id))
-                    logger.warning('decoded: {0}'.format(decoded))
-                    hyp[image_id] = decoded
+                    logger.warning('decoded: {0}'.format(top_sentence))
+                    hyp[image_id] = top_sentence
                 else:
-                    hyp[image_id] = decoded[:-1]
+                    hyp[image_id] = top_sentence[:-1]
 
         with open(hyp_path, 'w') as fp:
             json.dump(hyp, fp)
@@ -297,3 +294,6 @@ if __name__ == "__main__":
     }
     logger.info('result: {0}'.format(result))
     table_1.append(result)
+
+    with open(table1_path, 'w') as fp:
+        json.dump(table_1, fp, indent=4)
