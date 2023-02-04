@@ -1,6 +1,6 @@
 #  Intention Oriented Image Captions with Guiding Objects
 
-This is a pytorch implementation of _Intention Oriented Image Captions with Guiding Objects_ by Zheng et al.
+This is a pytorch implementation of [_Intention Oriented Image Captions with Guiding Objects_](https://arxiv.org/abs/1811.07662) by Zheng et al.
 
 Currently the model architectures are mocked up, and I attempted to reproduce table 1 (only CGO results and base with beam=1). Object average numbers and recalls are on par with the original paper. Note that for base model and "Caption GT label", the numbers are lower because I used exact match when counting if an object appears in the sentence, while the original paper converted the words to their roots. METEOR scores are lower but comparable to the original paper.
 
